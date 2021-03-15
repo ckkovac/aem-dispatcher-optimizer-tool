@@ -9,7 +9,12 @@ pipeline {
         EMAIL_ENABLED = true
         EMAIL_RECIPIENTS = 'aem-dot@adobe.com'
     }
-
+    
+    tools{
+        maven 'Maven 3.2.1'
+        jdk 'Latest Java'
+    }
+    
     stages{
         stage("clean workspace") {
             steps {
@@ -39,8 +44,7 @@ pipeline {
         //Stage: Maven Integration
         stage('Maven build') {
             steps{
-                 sh "export PATH=${tool 'Latest Java'}/bin:${tool 'Maven 3.2.1'}/bin:$PATH " +
-                     "&& mvn clean install"
+                 sh "mvn clean install"
             }
         }
     }
