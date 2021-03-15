@@ -39,9 +39,8 @@ pipeline {
         //Stage: Maven Integration
         stage('Maven build') {
             steps{
-                sh '''
-                   mvn clean install
-                '''
+                 sh "export PATH=${tool 'Latest Java'}/bin:${tool 'Maven 3.2.1'}/bin:$PATH " +
+                     "&& mvn clean install"
             }
         }
     }
